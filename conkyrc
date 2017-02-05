@@ -30,6 +30,7 @@ override_utf8_locale yes
 use_spacer none
 
 maximum_width 280
+minimun_height 900  
 draw_graph_borders no
 if_up_strictness address
 
@@ -71,7 +72,7 @@ ${offset 10}$font   - ${color #C3CC9E}${top_mem name 3} ${alignr} ${color #ADB29
 ${offset 10}$font   - ${color #C3CC9E}${top_mem name 4} ${alignr} ${color #ADB293}${top_mem mem_res 4}  ${color white}    
 ${offset 10}$font   - ${color #C3CC9E}${top_mem name 5} ${alignr} ${color #ADB293}${top_mem mem_res 5}${color snow2}      
   
-${offset 10}${font ConkySymbols:pixelsize=20}b${font monospace:pixelsize=16} ${color #496C99}NET:${gw_iface} _____________${color white}
+${offset 10}${font ConkySymbols:pixelsize=20}b${font monospace:pixelsize=16} ${color #496C99}NET:${color Light Blue}${gw_iface}${color #496C99} _____________${color white}
 
 ${voffset -16}${offset 20}${color snow2}$font Connections: ${font PizzaDude Bullets}T $font:${color snow3}${tcp_portmon 1 32767 count} ${alignr}${color snow2} ${font PizzaDude Bullets}N $font:${color snow3}${tcp_portmon 32768 61000 count}        
 ${if_up wlan0} ${offset 20}${color snow2}${font PizzaDude Bullets:pixelsize=24}${color Light Green}${voffset 12}T${voffset -12}$font  ${downspeedgraph wlan0 20,110 496C99 DFFEFF -l} ${color snow3} ${voffset 14}${downspeed wlan0} ${color #C3CC9E} ${endif} ${if_up wlan1} ${offset 20}${color snow2}${font PizzaDude Bullets:pixelsize=24}${color Light Green}${voffset 12}T${voffset -12}$font  ${downspeedgraph wlan1 20,110 496C99 DFFEFF -l} ${color snow3} ${voffset 14}${downspeed wlan1} ${color #C3CC9E} ${endif} ${if_up eth0} ${offset 20}${color snow2}${font PizzaDude Bullets:pixelsize=30}${color Light Green}${voffset 12}T${voffset -12}$font  ${downspeedgraph eth0 20,110 496C99 DFFEFF -l} ${color snow3} ${voffset 14}${downspeed eth1} ${color #C3CC9E} ${endif}
@@ -79,9 +80,12 @@ ${if_up wlan0} ${offset 20}${color snow2}${font PizzaDude Bullets:pixelsize=24}$
 #${offset 20}$font ${tcp_portmon 1 32767 rhost 2} ${tcp_portmon 1 32767 lservice 2} ${color snow2}  
 
 ${voffset -32}${if_up wlan0} ${offset 20}${color snow2}${font PizzaDude Bullets:pixelsize=24}${color Light Coral}${voffset 12}N${voffset -12}$font  ${upspeedgraph wlan0 20,110 496C99 DFFEFF -l} ${color snow3} ${voffset 14}${upspeed wlan0} ${color #C3CC9E} ${endif} ${if_up wlan1} ${offset 20}${color snow2}${font PizzaDude Bullets:pixelsize=24}${color Light Coral}${voffset 12}N${voffset -12}$font  ${upspeedgraph wlan1 20,110 496C99 DFFEFF -l} ${color snow3} ${voffset 14}${upspeed wlan1} ${color #C3CC9E} ${endif} ${if_up eth0} ${offset 20}${color snow2}${font PizzaDude Bullets:pixelsize=24}${color Light Coral}${voffset 12}N${voffset -12}$font  ${upspeedgraph eth0 20,110 496C99 DFFEFF -l} ${color snow3} ${voffset 14}${upspeed eth0} ${color #C3CC9E} ${endif}
-#Incomming detection
-${voffset -10}${if_match ${tcp_portmon 1 32767 count} > 0} ${color Light Goldenrod}${font Webdings:pixelsize=24}i$font Incomming: ${tcp_portmon 1 32767 rip 0} ${tcp_portmon 1 32767 lservice 0}${endif}${color snow2}
 #Outgoing  connections
-${voffset 10}${offset 10}$font ${tcp_portmon 32768 61000 rhost 0}  ${tcp_portmon 32768 61000 rservice 0}
+${voffset -5}${offset 10}$font ${tcp_portmon 32768 61000 rhost 0}  ${tcp_portmon 32768 61000 rservice 0}
 ${offset 10}$font ${tcp_portmon 32768 61000 rhost 1}  ${tcp_portmon 32768 61000 rservice 1}
 ${offset 10}$font ${tcp_portmon 32768 61000 rhost 2}  ${tcp_portmon 32768 61000 rservice 2}
+#Incomming detection
+${voffset 5}${alignc}${offset -20}${if_match ${tcp_portmon 1 32767 count} > 0} ${color Light Goldenrod}${font Webdings:pixelsize=24}i$font Incomming: 
+${alignc}${offset -20}${tcp_portmon 1 32767 rip 0} ${tcp_portmon 1 32767 lservice 0}${endif}${color snow2}
+${voffset -45}
+
