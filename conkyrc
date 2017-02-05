@@ -85,7 +85,6 @@ ${voffset -5}${offset 10}$font ${tcp_portmon 32768 61000 rhost 0}  ${tcp_portmon
 ${offset 10}$font ${tcp_portmon 32768 61000 rhost 1}  ${tcp_portmon 32768 61000 rservice 1}
 ${offset 10}$font ${tcp_portmon 32768 61000 rhost 2}  ${tcp_portmon 32768 61000 rservice 2}
 #Incomming detection
-${voffset 5}${alignc}${offset -20}${if_match ${tcp_portmon 1 32767 count} > 0} ${color Light Goldenrod}${font Webdings:pixelsize=24}i$font Incomming: 
-${alignc}${offset -20}${tcp_portmon 1 32767 rip 0} ${tcp_portmon 1 32767 lservice 0}${endif}${color snow2}
+${voffset 5}${alignc}${offset -20}${if_match ${tcp_portmon 1 32767 count} > 0} ${color Light Goldenrod}${font Webdings:pixelsize=24}i$font Incomming: ${offset -20}${tcp_portmon 1 32767 rip 0} ${tcp_portmon 1 32767 lservice 0}${endif}${color snow2}
 ${voffset -45}
 
