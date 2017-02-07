@@ -34,25 +34,27 @@ maximum_width 280
 minimun_height 900  
 draw_graph_borders no
 if_up_strictness address
-
+xinerama_head eDP1 
 TEXT
 #leet chars: ┤┤└└┴┴┐┐││┘┘┌┌├├┬┬┼┼┴┴── ││ ▽▼△▲▵▴▾▿
 ${font}
 #${alignc}${color snow2}${font ConkySymbols:pixelsize=30}a${font Capture It:pixelsize=22} ${color snow2}${nodename}
 ${offset 80}${image ~/.conky/conky_logo.png -p 6, 6 -s 60x60} ${font Future:pixelsize=32}${color snow2}${nodename}
-${offset 70}${voffset -10}${font DejaVu Sans Mono:pixelsize=14}${color snow2} ${kernel}  ${color gray}${uptime}${color snow2}
-
-${offset 10}${font ConkySymbols:pixelsize=20}f${font dejavu sans mono bold:pixelsize=16}${color #496C99} CPU ${color1}${voffset -10}${cpugraph 20,180 496C99 DFFEFF}   
+#${voffset -2}${offset 80}${image ~/.conky/conky_logo2.png -p 0, 0 -s 280x70} ${font Future:pixelsize=36}${color black}${nodename}
+${voffset -2}${offset 70}${voffset -10}${font DejaVu Sans Mono:pixelsize=14}${color snow2} ${kernel}  ${color grey}${uptime}${color snow2}
+${hr 2} 
+${voffset 5}${offset 10}${font ConkySymbols:pixelsize=20}f${voffset -5}${font dejavu sans mono bold:pixelsize=16}${color #496C99} CPU ${color1}${voffset -10}${cpugraph 20,180 496C99 DFFEFF}   
 ${offset 20}${color snow2}$font Core 1: ${color snow3}${cpu cpu1}% ${alignr}${color snow2} Core 2: ${color snow3}${cpu cpu2}%${color white}   
 ${offset 20}${color snow2}$font Core 3: ${color snow3}${cpu cpu3}% ${alignr}${color snow2} Core 4: ${color snow3}${cpu cpu4}%${color white}   
-${offset 20}${color snow2}$font Freq: ${color snow3}${freq 1}Mhz ${alignr}${color snow2} Temp:   ${color snow3}${execi 10  sensors | grep "Core 0" | cut  -c18-19}${color white}   
+${offset 20}${color snow2}$font Freq: ${color snow3}${freq 1}Mhz ${alignr}${color snow2}Temp:    ${color snow3}${execi 10  sensors | grep "Core 0" | cut  -c18-19}${color white}   
 ${offset 20}${color snow2}$font Load: ${color snow3}$loadavg ${color snow2}Procs: ${color snow3}$processes${color white}   
 ${color white}
 ${offset 10}$font   - ${color light yellow}${top name 1} ${alignr} ${color light yellow}${top cpu 1} ${color white}     
 ${offset 10}$font   - ${color #C3CC9E}${top name 2} ${alignr} ${color #ADB293}${top cpu 2}  ${color white}    
 ${offset 10}$font   - ${color #C3CC9E}${top name 3} ${alignr} ${color #ADB293}${top cpu 3} ${color white}     
 ${offset 10}$font   - ${color #C3CC9E}${top name 4} ${alignr} ${color #ADB293}${top cpu 4} ${color white}     
-#${offset 20}$font   - ${color #C3CC9E}${top name 5} ${alignr} ${color #ADB293}${top cpu 5} ${color snow2}     
+#${offset 20}$font   - ${color #C3CC9E}${top name 5} ${alignr} ${color #ADB293}${top cpu 5} ${color snow2}
+#${hr 1}     
 ${offset 10}${font ConkySymbols:pixelsize=20}k${font Unsipace:pixelsize=16} ${color #496C99}DISC ${voffset -10}${diskiograph 20,180 496C99 DFFEFF} ${color white} 
 ${offset 20}$font ${color snow2}Read: ${color snow3}$diskio_read ${color snow2}Write: ${color snow3}$diskio_write
 ${offset 20}$font ${color snow2}root  ${color snow3}${fs_used /}/${fs_size /} ${alignr}${offset -10}${color snow2}${fs_bar 10,60}
@@ -63,6 +65,7 @@ ${offset 10}$font   - ${color #C3CC9E}${top_io name 2} ${alignr} ${color #ADB293
 ${offset 10}$font   - ${color #C3CC9E}${top_io name 3} ${alignr} ${color #ADB293}${top_io io_perc 3}  ${color white}    
 ${offset 10}$font   - ${color #C3CC9E}${top_io name 4} ${alignr} ${color #ADB293}${top_io io_perc 4}  ${color white}    
 #${offset120}$font   - ${color #C3CC9E}${top_io name 5} ${alignr} ${color #ADB293}${top_io io_perc 5}${color snow2}      
+#${hr 1}
 ${offset 10}${font ConkySymbols:pixelsize=20}J${font Unsipace:pixelsize=16} ${color #496C99}MEMORY ${voffset -10}${memgraph 20,145 496C99 DFFEFF} ${color white}
 ${offset 20}${color snow2}$font Mem:  ${color snow3}$mem/$memmax ${color snow2}${alignr}${offset -10}${membar 10,60} 
 ${offset 20}${color snow2}$font Swap: ${color snow3}$swap ${color snow2}${alignr}${offset -10}${swapbar 10,60}
