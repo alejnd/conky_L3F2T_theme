@@ -1,13 +1,13 @@
-#
-background yes
+background true
+format_human_readable yes
 use_xft yes
-xftfont Unispace:pixelsize=13
+font DroidSans Mono:pixelsize=14
 xftalpha 1
 update_interval 0.5
 total_run_times 0
 own_window yes
 #own_window_transparent yes
-own_window_type pannel
+own_window_type desktop
 own_window_argb_visual yes
 own_window_argb_value 190
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
@@ -16,74 +16,78 @@ draw_shades no
 draw_outline no
 draw_borders no
 stippled_borders 0
-border_width 0
+border_width 10
 default_color white
 default_shade_color black
 default_outline_color black
 alignment top_right
-gap_x 18
-gap_y 42
+gap_x 32
+gap_y 62
 no_buffers yes
 top_cpu_separate yes
 cpu_avg_samples 2
 net_avg_samples 2
 override_utf8_locale yes
 use_spacer left
-pad_percents 2
-maximum_width 300
+pad_percents 1
+#maximum_width 300
 draw_graph_borders no
 if_up_strictness address
 xinerama_head eDP1
+
 TEXT
 
 ${font}
-${offset 70}${image ~/.conky/conky_logo.png -p 6, 6 -s 60x60} ${font Neuropolitical:pixelsize=28}${color snow2}${nodename}
-#${voffset -2}${offset 80}${image ~/.conky/conky_logo2.png -p 0, 0 -s 280x70} ${font Future:pixelsize=36}${color black}${nodename}
-${voffset -2}${offset 70}${voffset -10}${font DejaVu Sans Mono:pixelsize=14}${color snow2} ${kernel}  ${color grey}${uptime}${color snow2}
+${offset 70}${image ~/.conky/conky_logo.png -p 6, 6 -s 60x60} ${voffset -20}${font D050000L:pixelsize=25}x y z${font URW Ghotic:pixelsize=28}${color snow2} ${execi 120 cat /etc/hostname | tr [a-z] [A-Z]} ${voffset -2}${font D050000L:pixelsize=25}z y x
+#${voffset -2}${offset 80}${image ~/.conky/conky_logo2.png -p 0, 0 -s 280x70} ${font Future:pixelsize=36}${color black}${exec echo ${nodename}| tr [a-z] [A-Z]}
+${voffset 15}${offset 70}${voffset -10}${font DejaVu Sans Mono:pixelsize=14}${color snow2} ${kernel}  ${color grey}${uptime}${color snow2}
 ${voffset 5}${hr 2}
-${voffset 5}${offset 10}${font ConkySymbols:pixelsize=20}f${voffset -5}${font dejavu sans mono bold:pixelsize=16}${color #496C99} CPU ${color1}${voffset -10}${cpugraph 20,180 496C99 DFFEFF}
-${offset 20}${color snow2}$font Core 1: ${color snow3}${cpu cpu1}% ${alignr}${color snow2} Core 2: ${color snow3}${cpu cpu2}%${color white}
-${offset 20}${color snow2}$font Core 3: ${color snow3}${cpu cpu3}% ${alignr}${color snow2} Core 4: ${color snow3}${cpu cpu4}%${color white}
-${offset 20}${color snow2}$font Freq: ${color snow3}${freq 1}Mhz ${alignr}${color snow2}Temp:    ${color snow3}${execi 10  sensors | grep "Core 0" | cut  -c18-19}${color white}
-${offset 20}${color snow2}$font Load: ${color snow3}$loadavg ${color snow2}Procs: ${color snow3}$processes${color white}
+${voffset 5}${offset 0}${font ConkySymbols:pixelsize=20}f${voffset -5}${font dejavu sans mono bold:pixelsize=16}${color #496C99} CPU ${color1}${voffset -10}${cpugraph 20,180 496C99 DFFEFF}
+${offset 10}${color snow2}$font Core 1: ${color snow3}${cpu cpu1}% ${goto 180}${color snow2} Core 2:${color snow3}${cpu cpu2}%${color white}
+${offset 10}${color snow2}$font Core 3: ${color snow3}${cpu cpu3}% ${goto 180}${color snow2} Core 4:${color snow3}${cpu cpu4}%${color white}
+
+${offset 10}${color snow2}$font Freq: ${color snow3}${freq 1}Mhz ${alignr}${color snow2}Temp:${color snow3}${hwmon 2 temp 1}°C${color white}
+${offset 10}${color snow2}$font Load: ${color snow3}$loadavg ${color snow2} ${alignr}Procs:${color snow3}$processes${color white}
 ${color white}
-${offset 10}$font   - ${color light yellow}${top name 1} ${alignr} ${color light yellow}${top cpu 1} ${color white}
-${offset 10}$font   - ${color #C3CC9E}${top name 2} ${alignr} ${color #ADB293}${top cpu 2} ${color white}
-${offset 10}$font   - ${color #C3CC9E}${top name 3} ${alignr} ${color #ADB293}${top cpu 3} ${color white}
-${offset 10}$font   - ${color #C3CC9E}${top name 4} ${alignr} ${color #ADB293}${top cpu 4} ${color white}
-#${offset 20}$font   - ${color #C3CC9E}${top name 5} ${alignr} ${color #ADB293}${top cpu 5} ${color snow2}
+${offset 0}$font   - ${color light yellow}${top name 1} ${alignr} ${color light yellow}${top cpu 1} ${color white}
+${offset 0}$font   - ${color #C3CC9E}${top name 2} ${alignr} ${color #ADB293}${top cpu 2} ${color white}
+${offset 0}$font   - ${color #C3CC9E}${top name 3} ${alignr} ${color #ADB293}${top cpu 3} ${color white}
+${offset 0}$font   - ${color #C3CC9E}${top name 4} ${alignr} ${color #ADB293}${top cpu 4} ${color white}
+#${offset 10}$font   - ${color #C3CC9E}${top name 5} ${alignr} ${color #ADB293}${top cpu 5} ${color snow2}
 #${hr 1}
 
-${offset 10}${font ConkySymbols:pixelsize=20}k${font Unsipace:pixelsize=16} ${color #496C99}DISC ${voffset -10}${diskiograph 20,180 496C99 DFFEFF} ${color white}
-${offset 20}$font ${color snow2}Read: ${color snow3}$diskio_read ${color snow2}Write: ${color snow3}$diskio_write
-${offset 20}$font ${color snow2}root  ${color snow3}${fs_used /}/${fs_size /} ${alignr}${offset -10}${color snow2}${fs_bar 10,60}
-${offset 20}$font ${color snow2}home  ${color snow3}${fs_used /home}/${fs_size /home} ${alignr}${offset -10}${color snow2}${fs_bar 10,60 /home}
+${offset 0}${font ConkySymbols:pixelsize=20}k${font Unsipace:pixelsize=16} ${color #496C99}DISC ${voffset -10}${diskiograph 20,180 496C99 DFFEFF} ${color white}
+${offset 10}$font ${color snow2}Read: ${color snow3}$diskio_read ${color snow2}Write: ${color snow3}$diskio_write
+${offset 10}$font ${color snow2}root  ${color snow3}${fs_used /}/${fs_size /} ${alignr}${offset -10}${color #6E8B3D}${fs_bar 10,60}
+${offset 10}$font ${color snow2}home  ${color snow3}${fs_used /home}/${fs_size /home} ${alignr}${offset -10}${color #6E8B3D}${fs_bar 10,60 /home}
 ${color white}
-${offset 10}$font   - ${color light yellow}${top_io name 1} ${alignr} ${color light yellow}${top_io io_perc 1}  ${color white}
-${offset 10}$font   - ${color #C3CC9E}${top_io name 2} ${alignr} ${color #ADB293}${top_io io_perc 2}  ${color white}
-${offset 10}$font   - ${color #C3CC9E}${top_io name 3} ${alignr} ${color #ADB293}${top_io io_perc 3}  ${color white}
-${offset 10}$font   - ${color #C3CC9E}${top_io name 4} ${alignr} ${color #ADB293}${top_io io_perc 4}  ${color white}
-#${offset120}$font   - ${color #C3CC9E}${top_io name 5} ${alignr} ${color #ADB293}${top_io io_perc 5}${color snow2}
+${offset 0}$font   - ${color light yellow}${top_io name 1} ${alignr} ${color light yellow}${top_io io_perc 1}  ${color white}
+${offset 0}$font   - ${color #C3CC9E}${top_io name 2} ${alignr} ${color #ADB293}${top_io io_perc 2}  ${color white}
+${offset 0}$font   - ${color #C3CC9E}${top_io name 3} ${alignr} ${color #ADB293}${top_io io_perc 3}  ${color white}
+${offset 0}$font   - ${color #C3CC9E}${top_io name 4} ${alignr} ${color #ADB293}${top_io io_perc 4}  ${color white}
+#${offset110}$font   - ${color #C3CC9E}${top_io name 5} ${alignr} ${color #ADB293}${top_io io_perc 5}${color snow2}
 #${hr 1}
 
-${offset 10}${font ConkySymbols:pixelsize=20}J${font Unsipace:pixelsize=16} ${color #496C99}MEMORY ${voffset -10}${memgraph 20,145 496C99 DFFEFF} ${color white}
-${offset 20}${color snow2}$font Mem:  ${color snow3}$mem/$memmax ${color snow2}${alignr}${offset -10}${membar 10,60}
-${offset 20}${color snow2}$font Swap: ${color snow3}$swap ${color snow2}${alignr}${offset -10}${swapbar 10,60}
+${offset 0}${font ConkySymbols:pixelsize=20}J${font Unsipace:pixelsize=16} ${color #496C99}MEMORY ${voffset -10}${memgraph 20,145 496C99 DFFEFF} ${color white}
+${offset 10}${color snow2}$font Mem:  ${color snow3}$mem/$memmax ${color #6E8B3D}${alignr}${offset -10}${membar 10,60}
+${offset 10}${color snow2}$font Swap: ${color snow3}$swap ${color #6E8B3D}${alignr}${offset -10}${swapbar 10,60}
 ${color white}
-${offset 10}$font   - ${color light yellow}${top_mem name 1} ${alignr} ${color light yellow}${top_mem mem_res 1}  ${color white}
-${offset 10}$font   - ${color #C3CC9E}${top_mem name 2} ${alignr} ${color #ADB293}${top_mem mem_res 2}  ${color white}
-${offset 10}$font   - ${color #C3CC9E}${top_mem name 3} ${alignr} ${color #ADB293}${top_mem mem_res 3}  ${color white}
-${offset 10}$font   - ${color #C3CC9E}${top_mem name 4} ${alignr} ${color #ADB293}${top_mem mem_res 4}  ${color white}
-${offset 10}$font   - ${color #C3CC9E}${top_mem name 5} ${alignr} ${color #ADB293}${top_mem mem_res 5}  ${color snow2}
+${offset 0}$font   - ${color light yellow}${top_mem name 1} ${alignr} ${color light yellow}${top_mem mem_res 1}  ${color white}
+${offset 0}$font   - ${color #C3CC9E}${top_mem name 2} ${alignr} ${color #ADB293}${top_mem mem_res 2}  ${color white}
+${offset 0}$font   - ${color #C3CC9E}${top_mem name 3} ${alignr} ${color #ADB293}${top_mem mem_res 3}  ${color white}
+${offset 0}$font   - ${color #C3CC9E}${top_mem name 4} ${alignr} ${color #ADB293}${top_mem mem_res 4}  ${color white}
+${offset 0}$font   - ${color #C3CC9E}${top_mem name 5} ${alignr} ${color #ADB293}${top_mem mem_res 5}  ${color snow2}
 
-${offset 10}${font ConkySymbols:pixelsize=20}b${font monospace:pixelsize=16} ${color #496C99}NET:${color Light Blue}${gw_iface}${color #496C99} _____________${color white}
+${offset 0}${font ConkySymbols:pixelsize=20}b${font monospace:pixelsize=16} ${color #496C99}NET:${color Light Blue}${gw_iface}${color #496C99} _____________${color white}
 
-${voffset -10}${offset 20}${color snow2}$font Connections: ${font PizzaDude Bullets}T $font:${color snow3}${tcp_portmon 1 32767 count} ${alignr}${color snow2} ${font PizzaDude Bullets}N $font:${color snow3}${tcp_portmon 32768 61000 count}
-${if_up wlan0} ${offset 20}${color snow2}${font PizzaDude Bullets:pixelsize=24}${color Light Green}${voffset 12}T${voffset -12}$font  ${downspeedgraph wlan0 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed wlan0} ${color #C3CC9E} ${endif} ${if_up wlan1} ${offset 20}${color snow2}${font PizzaDude Bullets:pixelsize=24}${color Light Green}${voffset 12}T${voffset -12}$font  ${downspeedgraph wlan1 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed wlan1} ${color #C3CC9E} ${endif} ${if_up eth0} ${offset 20}${color snow2}${font PizzaDude Bullets:pixelsize=24}${color Light Green}${voffset 12}T${voffset -12}$font  ${downspeedgraph eth0 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed eth0} ${color #C3CC9E} ${endif}
+${offset 10}${voffset -10}${color snow2}$font Connections: ${voffset -3} ${font D050000L}t $font:${color snow3}${tcp_portmon 1 32767 count} ${alignr}${voffset -5} ${color snow2} ${font D050000L}s $font:${color snow3}${tcp_portmon 32768 61000 count}
+${if_up wlan0} ${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Green}${voffset 12}t${voffset -12}$font  ${downspeedgraph wlan0 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed wlan0} ${color #C3CC9E} ${endif} ${if_up wlan1} ${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Green}${voffset 12}t${voffset -12}$font ${downspeedgraph wlan1 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed wlan1} ${color #C3CC9E} ${endif} ${if_up eth0} ${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Green}${voffset 12}t${voffset -12}$font  ${downspeedgraph eth0 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed eth0} ${color #C3CC9E} ${endif}
+
+#nice try but downloadspeed is buggy and doesnt work
+#${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Green}${voffset 12}t${voffset -12}$font  ${downspeedgraph ${gw_iface} 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed ${gw_iface}} ${color #C3CC9E}
 #${offset 20}$font ${tcp_portmon 1 32767 rhost 1} ${tcp_portmon 1 32767 lservice 1}
 #${offset 20}$font ${tcp_portmon 1 32767 rhost 2} ${tcp_portmon 1 32767 lservice 2} ${color snow2}
-
-${voffset -32}${if_up wlan0} ${offset 20}${color snow2}${font PizzaDude Bullets:pixelsize=24}${color Light Coral}${voffset 12}N${voffset -12}$font  ${upspeedgraph wlan0 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${upspeed wlan0} ${color #C3CC9E} ${endif} ${if_up wlan1} ${offset 20}${color snow2}${font PizzaDude Bullets:pixelsize=24}${color Light Coral}${voffset 12}N${voffset -12}$font  ${upspeedgraph wlan1 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${upspeed wlan1} ${color #C3CC9E} ${endif} ${if_up eth0} ${offset 20}${color snow2}${font PizzaDude Bullets:pixelsize=24}${color Light Coral}${voffset 12}N${voffset -12}$font  ${upspeedgraph eth0 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${upspeed eth0} ${color #C3CC9E} ${endif}
+${voffset -32}${if_up wlan0} ${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Coral}${voffset 12}s${voffset -12}$font  ${upspeedgraph wlan0 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${upspeed wlan0} ${color #C3CC9E} ${endif} ${if_up wlan1} ${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Coral}${voffset 12}s${voffset -12}$font  ${upspeedgraph wlan1 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${upspeed wlan1} ${color #C3CC9E} ${endif} ${if_up eth0} ${offset 1g0}${color snow2}${font D050000L:pixelsize=24}${color Light Coral}${voffset 12}s${voffset -12}$font  ${upspeedgraph eth0 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${upspeed eth0} ${color #C3CC9E} ${endif}
 #Outgoing  connections: inactive due heavy lag
 #${voffset -5}${offset 10}$font ${tcp_portmon 32768 61000 rhost 0}  ${tcp_portmon 32768 61000 rservice 0}
 #${offset 10}$font ${tcp_portmon 32768 61000 rhost 1}  ${tcp_portmon 32768 61000 rservice 1}
