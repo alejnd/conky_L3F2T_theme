@@ -1,7 +1,7 @@
 background true
 format_human_readable yes
 use_xft yes
-font DroidSans Mono:pixelsize=14
+font Dejavu Sans Mono:pixelsize=14
 xftalpha 1
 update_interval 0.5
 total_run_times 0
@@ -9,7 +9,7 @@ own_window yes
 #own_window_transparent yes
 own_window_type desktop
 own_window_argb_visual yes
-own_window_argb_value 190
+own_window_argb_value 150
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 double_buffer yes
 draw_shades no
@@ -38,10 +38,14 @@ xinerama_head eDP1
 TEXT
 
 ${font}
-${offset 70}${image ~/.conky/conky_logo.png -p 6, 6 -s 60x60} ${voffset -20}${font D050000L:pixelsize=25}x y z${font URW Ghotic:pixelsize=28}${color snow2} ${execi 120 cat /etc/hostname | tr [a-z] [A-Z]} ${voffset -2}${font D050000L:pixelsize=25}z y x
-#${voffset -2}${offset 80}${image ~/.conky/conky_logo2.png -p 0, 0 -s 280x70} ${font Future:pixelsize=36}${color black}${exec echo ${nodename}| tr [a-z] [A-Z]}
-${voffset 15}${offset 70}${voffset -10}${font DejaVu Sans Mono:pixelsize=14}${color snow2} ${kernel}  ${color grey}${uptime}${color snow2}
-${voffset 5}${hr 2}
+${offset 70}${image ~/.conky/logo.png -p 6, 6 -s 60x60}${goto 90}${voffset -15}░▒▓▌${font pixelsize=20} ${color snow2}${execi 120 hostname | tr [a-z] [A-Z]}${font} ${voffset -2}▐▓▒░
+${voffset 15}${offset 70}${voffset -10}${font DejaVu Sans Mono:pixelsize=14}${color snow2} Kernel: ${kernel}  ${color grey}${uptime}${color snow2}
+${voffset 0}
+${hr 1}
+User gen: ${execi 120 nix-env --list-generations | wc -l}  User garbage: ${execi 120 du -shLc /nix/var/nix/profiles/per-user/$USER/profile-* 2>/dev/null | tail -n1 | cut -f 1}
+# System garbage calc can be time consuming, diable the next line if you have perfomance issues.
+System gen: ${execi 120 ls  -d /nix/var/nix/profiles/system-4* | wc -l} System garbage ${execi 600 du -shLc $(array=($(ls /nix/var/nix/profiles/system-* -d -t));echo ${array[@]:1}) 2>/dev/null |tail -n 1 | cut -f 1}
+${hr 2}
 ${voffset 5}${offset 0}${font ConkySymbols:pixelsize=20}f${voffset -5}${font dejavu sans mono bold:pixelsize=16}${color #496C99} CPU ${color1}${voffset -10}${cpugraph 20,180 496C99 DFFEFF}
 ${offset 10}${color snow2}$font Core 1: ${color snow3}${cpu cpu1}% ${goto 180}${color snow2} Core 2:${color snow3}${cpu cpu2}%${color white}
 ${offset 10}${color snow2}$font Core 3: ${color snow3}${cpu cpu3}% ${goto 180}${color snow2} Core 4:${color snow3}${cpu cpu4}%${color white}
@@ -56,7 +60,7 @@ ${offset 0}$font   - ${color #C3CC9E}${top name 4} ${alignr} ${color #ADB293}${t
 #${offset 10}$font   - ${color #C3CC9E}${top name 5} ${alignr} ${color #ADB293}${top cpu 5} ${color snow2}
 #${hr 1}
 
-${offset 0}${font ConkySymbols:pixelsize=20}k${font Unsipace:pixelsize=16} ${color #496C99}DISC ${voffset -10}${diskiograph 20,180 496C99 DFFEFF} ${color white}
+${offset 0}${font ConkySymbols:pixelsize=20}${font Unsipace:pixelsize=16} ${color #496C99}DISC ${voffset -10}${diskiograph 20,180 496C99 DFFEFF} ${color white}
 ${offset 10}$font ${color snow2}Read: ${color snow3}$diskio_read ${color snow2}Write: ${color snow3}$diskio_write
 ${offset 10}$font ${color snow2}root  ${color snow3}${fs_used /}/${fs_size /} ${alignr}${offset -10}${color #6E8B3D}${fs_bar 10,60}
 ${offset 10}$font ${color snow2}home  ${color snow3}${fs_used /home}/${fs_size /home} ${alignr}${offset -10}${color #6E8B3D}${fs_bar 10,60 /home}
