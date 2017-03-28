@@ -47,7 +47,6 @@ ${hr 2}
 # Nixos info
 #
 ${color #66CD00}${font :pixelsize=30}♻ ${font :pixelsize=20}${color snow2}${voffset -3}Garbage: $font ${voffset -3}${goto 190} User:   ${execi 120 du -shLc /nix/var/nix/profiles/per-user/$USER/profile-* 2>/dev/null | tail -n1 | cut -f 1} ${voffset 20}${goto 190} System: ${execi 600 du -shLc $(array=($(ls /nix/var/nix/profiles/system-* -d -t));echo ${array[@]:1}) 2>/dev/null |tail -n 1 | cut -f 1}
-#${execi 120 nix-env --list-generations | wc -l}
 #
 # System garbage calc can be time consuming, diable the next line if you have perfomance issues.
 #
@@ -56,7 +55,7 @@ ${hr 1}
 #
 # CPU
 #
-${voffset 5}${offset 0}${font :pixelsize=32}⚛${voffset -5}${font dejavu sans mono bold:pixelsize=16}${color #496C99} CPU ${color1}${voffset -10}${cpugraph 20,180 496C99 DFFEFF}
+${voffset 5}${offset 0}${font :pixelsize=32}⚛${goto 45}${voffset -5}${font dejavu sans mono bold:pixelsize=16}${color #496C99}CPU${color1}${voffset -10}${cpugraph 20,220 496C99 DFFEFF}
 ${offset 10}${color snow2}$font Core 1: ${color snow3}${cpu cpu1}% ${goto 180}${color snow2} Core 2:${color snow3}${cpu cpu2}%${color white}
 ${offset 10}${color snow2}$font Core 3: ${color snow3}${cpu cpu3}% ${goto 180}${color snow2} Core 4:${color snow3}${cpu cpu4}%${color white}
 
@@ -71,9 +70,9 @@ ${offset 0}$font   - ${color #C3CC9E}${top name 4} ${alignr}${color #ADB293}${to
 #${hr 1}
 
 #
-# DIC
+# DISC
 #
-${offset 0}${font :pixelsize=30}⊚${font Unsipace:pixelsize=16} ${color #496C99}DISC ${voffset -10}${diskiograph 20,180 496C99 DFFEFF} ${color white}
+${font :pixelsize=30}⊚${goto 45}${font Unsipace:pixelsize=16}${color #496C99}DISC ${voffset -10}${diskiograph 20,215 496C99 DFFEFF} ${color white}
 ${offset 10}$font ${color snow2}Read: ${color snow3}$diskio_read ${color snow2}Write: ${color snow3}$diskio_write
 ${offset 10}$font ${color snow2}root  ${color snow3}${fs_used /}/${fs_size /} ${alignr}${offset -10}${color #6E8B3D}${fs_bar 10,60}
 ${offset 10}$font ${color snow2}home  ${color snow3}${fs_used /home}/${fs_size /home} ${alignr}${offset -10}${color #6E8B3D}${fs_bar 10,60 /home}
@@ -83,7 +82,10 @@ $font   - ${color #C3CC9E}${top_io name 2} ${alignr} ${color #ADB293}${top_io io
 $font   - ${color #C3CC9E}${top_io name 3} ${alignr} ${color #ADB293}${top_io io_perc 3}  ${color white}
 $font   - ${color #C3CC9E}${top_io name 4} ${alignr} ${color #ADB293}${top_io io_perc 4}  ${color white}
 
-${font ConkySymbols:pixelsize=20}J${font Unsipace:pixelsize=16} ${color #496C99}MEMORY ${voffset -10}${memgraph 20,145 496C99 DFFEFF} ${color white}
+#
+# MEMMORY
+#
+ ${font :pixelsize=22}⣿${goto 45}${font Unsipace:pixelsize=16}${color #496C99}MEMORY ${voffset -10}${memgraph 20,185 496C99 DFFEFF} ${color white}
 ${offset 10}${color snow2}$font Mem:  ${color snow3}$mem/$memmax ${color #6E8B3D}${alignr}${offset -10}${membar 10,60}
 ${offset 10}${color snow2}$font Swap: ${color snow3}$swap ${color #6E8B3D}${alignr}${offset -10}${swapbar 10,60}
 ${color white}
@@ -95,7 +97,7 @@ ${offset 0}$font   - ${color #C3CC9E}${top_mem name 5} ${alignr} ${color #ADB293
 #
 # NETWORKING
 #
-${offset 0}${font :pixelsize=32}⬌${voffset -4}${font monospace:pixelsize=16} ${color #496C99}NET:${color Light Blue}${gw_iface}${color #496C99} _____________${color white}
+${offset 0}${font :pixelsize=32}⬌${voffset -4}${goto 45}${font monospace:pixelsize=16}${color #496C99}NET:${color Light Blue}${gw_iface}${color #496C99} _____________${color white}
 
 ${offset 10}${voffset -10}${color snow2}$font Connections: ${voffset 0}▲ $font:${color snow3}${tcp_portmon 1 32767 count} ${goto 180}${voffset -0} ${color snow2}▼ $font:${color snow3}${tcp_portmon 32768 61000 count}
 ${if_up wlan0} ${offset 10}${color Light Green}${voffset 12}${font :pixelsize=26}⬇${voffset -14}${font} ${downspeedgraph wlan0 20,160 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed wlan0} ${color #C3CC9E} ${endif} ${if_up wlan1} ${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Green}${voffset 12}${voffset -12}$font ${downspeedgraph wlan1 20,200 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed wlan1} ${color #C3CC9E} ${endif} ${if_up eth0} ${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Green}${voffset 12}t${voffset -12}$font  ${downspeedgraph eth0 20,200 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed eth0} ${color #C3CC9E} ${endif}
@@ -111,4 +113,4 @@ ${voffset -22}${if_up wlan0} ${offset 10}${color Light Coral}${font :pixelsize=2
 #${offset 10}$font ${tcp_portmon 32768 61000 rhost 2}  ${tcp_portmon 32768 61000 rservice 2}
 #Incomming detection
 ${voffset -10}${if_match ${tcp_portmon 1 32767 count} > 0} ${color Light Goldenrod}${font :pixelsize=24} ⚠$font Incomming: ${tcp_portmon 1 32767 rip 0} ${tcp_portmon 1 32767 lservice 0}${endif}${color snow2}
-${voffset -75}
+${voffset -65}
