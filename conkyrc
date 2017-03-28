@@ -39,7 +39,7 @@ TEXT
 
 ${font}
 
-${offset 70}${image ~/.conky/logo.png -p 2, 1 -s 60x60}${goto 90}${voffset -30}${color #E0FFFF}░${color #B2DFEE}▒${color #9AC0CD}▓${color #8DB6CD}▌${voffset -2}${font FreeSans :pixelsize=20} ${color Azure}${execi 120 hostname | tr [a-z] [A-Z]}${color snow2}${font} ${voffset -2}${color #8DB6CD}▐${color #9AC0CD}▓${color #B2DFEE}▒${color #B2DFEE}░
+${offset 70}${image ./logo.png -p 2, 1 -s 60x60}${goto 90}${voffset -30}${color #E0FFFF}░${color #B2DFEE}▒${color #9AC0CD}▓${color #8DB6CD}▌${voffset -2}${font FreeSans :pixelsize=20} ${color Azure}${execi 120 hostname | tr [a-z] [A-Z]}${color snow2}${font} ${voffset -2}${color #8DB6CD}▐${color #9AC0CD}▓${color #B2DFEE}▒${color #B2DFEE}░
 ${voffset 15}${offset 70}${voffset -10}${font :pixelsize=14}${color #E0FFFF} Kernel:${color snow1} ${kernel} ${color grey}${uptime}${color snow2}
 ${voffset -5}
 ${hr 2}
