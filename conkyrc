@@ -39,18 +39,15 @@ TEXT
 
 ${font}
 
-${offset 70}${image ./logo.png -p 2, 1 -s 60x60}${goto 90}${voffset -30}${color #E0FFFF}░${color #B2DFEE}▒${color #9AC0CD}▓${color #8DB6CD}▌${voffset -2}${font FreeSans :pixelsize=20} ${color Azure}${execi 120 hostname | tr [a-z] [A-Z]}${color snow2}${font} ${voffset -2}${color #8DB6CD}▐${color #9AC0CD}▓${color #B2DFEE}▒${color #B2DFEE}░
-${voffset 15}${offset 70}${voffset -10}${font :pixelsize=14}${color #E0FFFF} Kernel:${color snow1} ${kernel} ${color grey}${uptime}${color snow2}
+${offset 70}${image ~/.conky/conky_logo.png -p 2, 1 -s 55x55}${goto 90}${voffset -30}${color #E0FFFF}░${color #B2DFEE}▒${color #9AC0CD}▓${color #8DB6CD}▌${voffset -2}${font FreeSans :pixelsize=20} ${color Azure}${execi 120 hostname | tr [a-z] [A-Z]}${color snow2}${font} ${voffset -2}${color #8DB6CD}▐${color #9AC0CD}▓${color #B2DFEE}▒${color #B2DFEE}░
+${voffset 15}${offset 70}${voffset -10}${font :pixelsize=14}${color #E0FFFF} Kernel:${color snow1} ${kernel} ${color grey}
 ${voffset -5}
 ${hr 2}
 #
 # Nixos info
 #
-${color #66CD00}${font :pixelsize=30}♻ ${font :pixelsize=20}${color snow2}${voffset -3}Garbage: $font ${voffset -3}${goto 190} User:   ${execi 120 du -shLc /nix/var/nix/profiles/per-user/$USER/profile-* 2>/dev/null | tail -n1 | cut -f 1} ${voffset 20}${goto 190} System: ${execi 600 du -shLc $(array=($(ls /nix/var/nix/profiles/system-* -d -t));echo ${array[@]:1}) 2>/dev/null |tail -n 1 | cut -f 1}
+${color #66CD00}${font :pixelsize=26}♻ ${font :pixelsize=16}${color snow2}${voffset -3}Cache packages: $font ${voffset -3}${goto 190} Packages: ${alignr}${execi 30 ls /var/cache/pacman/pkg | wc -l} ${voffset 20}${goto 190} Size: ${alignr}${execi 30 du -sh /var/cache/pacman | cut -f 1}  #
 #
-# System garbage calc can be time consuming, diable the next line if you have perfomance issues.
-#
-${color #CD2626}${font :pixelsize=32}⟳${font :pixelsize=20}${font :pixelsize=20}${color snow2}${voffset -4} Generations:$font ${voffset -1}${goto 190} User:   ${execi 120 nix-env --list-generations | wc -l} ${voffset 19}${goto 190} System: ${execi 120 ls  -d /nix/var/nix/profiles/system-* | wc -l}
 ${hr 1}
 #
 # CPU
@@ -100,7 +97,7 @@ ${offset 0}$font   - ${color #C3CC9E}${top_mem name 5} ${alignr} ${color #ADB293
 ${offset 0}${font :pixelsize=32}⬌${voffset -4}${goto 45}${font monospace:pixelsize=16}${color #496C99}NET:${color Light Blue}${gw_iface}${color #496C99} _____________${color white}
 
 ${offset 10}${voffset -10}${color snow2}$font Connections: ${voffset 0}▲ $font:${color snow3}${tcp_portmon 1 32767 count} ${goto 180}${voffset -0} ${color snow2}▼ $font:${color snow3}${tcp_portmon 32768 61000 count}
-${if_up wlan0} ${offset 10}${color Light Green}${voffset 12}${font :pixelsize=26}⬇${voffset -14}${font} ${downspeedgraph wlan0 20,160 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed wlan0} ${color #C3CC9E} ${endif} ${if_up wlan1} ${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Green}${voffset 12}${voffset -12}$font ${downspeedgraph wlan1 20,200 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed wlan1} ${color #C3CC9E} ${endif} ${if_up eth0} ${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Green}${voffset 12}t${voffset -12}$font  ${downspeedgraph eth0 20,200 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed eth0} ${color #C3CC9E} ${endif}
+${if_up wlan0} ${offset 10}${color Light Green}${voffset 12}${font :pixelsize=26}⬇${voffset -14}${font} ${downspeedgraph wlan0 20,160 496C99 DFFEFF -t} ${color snow3} ${alignr}${voffset 14}${downspeed wlan0} ${color #C3CC9E} ${endif} ${if_up wlan1} ${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Green}${voffset 12}${voffset -12}$font ${downspeedgraph wlan1 20,200 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed wlan1} ${color #C3CC9E} ${endif} ${if_up eth0} ${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Green}${voffset 12}t${voffset -12}$font  ${downspeedgraph eth0 20,200 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed eth0} ${color #C3CC9E} ${endif}
 
 #nice try but downloadspeed is buggy and doesnt work
 #${offset 10}${color snow2}${color Light Green}${voffset 12}{voffset -12}$font  ${downspeedgraph ${gw_iface} 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed ${gw_iface}} ${color #C3CC9E}
