@@ -36,12 +36,10 @@ if_up_strictness address
 xinerama_head eDP1
 
 TEXT
-
-${font}
-
-${offset 70}${image ~/.conky/conky_logo.png -p 2, 1 -s 55x55}${goto 90}${voffset -30}${color #E0FFFF}░${color #B2DFEE}▒${color #9AC0CD}▓${color #8DB6CD}▌${voffset -2}${font FreeSans :pixelsize=20} ${color Azure}${execi 120 hostname | tr [a-z] [A-Z]}${color snow2}${font} ${voffset -2}${color #8DB6CD}▐${color #9AC0CD}▓${color #B2DFEE}▒${color #B2DFEE}░
-${voffset 15}${offset 70}${voffset -10}${font :pixelsize=14}${color #E0FFFF} Kernel:${color snow1} ${kernel} ${color snow1}
-${voffset -5}
+${if_existing /home/ale/.conky/conky_logo.png} ${voffset 77}${image ~/.conky/conky_logo.png -p 2, 1 -s 55x55} $else ${font OpenLogos :pixelsize=50}B $endif
+$font ${alignc} ${voffset -80}    ${color #E0FFFF}░${color #B2DFEE}▒${color #9AC0CD}▓${color #8DB6CD}▌${voffset -2}${font FreeSans :pixelsize=20} ${color Azure}${execi 120 hostname | tr [a-z] [A-Z]}${color snow2}${font} ${voffset -2}${color #8DB6CD}▐${color #9AC0CD}▓${color #B2DFEE}▒${color #B2DFEE}░
+${voffset 15}${alignc}${voffset -10}${font :pixelsize=14}${color #E0FFFF} Kernel:${color snow1} ${kernel} ${color snow1}
+${voffset -10}
 ${hr 2}
 #
 # Archlinux info
