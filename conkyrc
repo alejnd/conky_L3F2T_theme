@@ -2,6 +2,7 @@ background true
 format_human_readable yes
 use_xft yes
 font Dejavu Sans Mono:pixelsize=14
+xftfont Dejavu Sans Mono:pixelsize=14
 xftalpha 1
 update_interval 0.5
 total_run_times 0
@@ -9,7 +10,7 @@ own_window yes
 #own_window_transparent yes
 #own_window_type desktop
 own_window_argb_visual yes
-own_window_argb_value 180
+own_window_argb_value 100
 own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
 double_buffer yes
 draw_shades no
@@ -37,14 +38,14 @@ xinerama_head eDP1
 
 TEXT
 ${if_existing /home/ale/.conky/conky_logo.png} ${voffset 77}${image ~/.conky/conky_logo.png -p 2, 1 -s 55x55} $else ${font OpenLogos :pixelsize=50}B $endif
-$font ${alignc} ${voffset -80}    ${color #E0FFFF}░${color #B2DFEE}▒${color #9AC0CD}▓${color #8DB6CD}▌${voffset -2}${font FreeSans :pixelsize=20} ${color Azure}${execi 120 hostname | tr [a-z] [A-Z]}${color snow2}${font} ${voffset -2}${color #8DB6CD}▐${color #9AC0CD}▓${color #B2DFEE}▒${color #B2DFEE}░
+${font Dejavu Sans Mono :pixelsize=14}${alignc} ${voffset -80}    ${color #E0FFFF}░${color #B2DFEE}▒${color #9AC0CD}▓${color #8DB6CD}▌${voffset -2}${font :pixelsize=20} ${color Azure}${execi 120 hostname | tr [a-z] [A-Z]}${color snow2}${font} ${voffset -2}${color #8DB6CD}▐${color #9AC0CD}▓${color #B2DFEE}▒${color #B2DFEE}░
 ${voffset 15}${alignc}${voffset -10}${font :pixelsize=14}${color #E0FFFF} Kernel:${color snow1} ${kernel} ${color snow1}
 ${voffset -10}
 ${hr 2}
 #
 # Archlinux info
 #
-${offset -1}${color #66CD00}${font :pixelsize=32}♽${goto 45}${font dejavu sans mono bold:pixelsize=16}${color #496C99}${voffset -3}Cache packages: $font ${color white}${voffset 0}${goto 190} Packages: ${color snow3}${alignr}${execi 30 ls /var/cache/pacman/pkg | wc -l} ${color white}${voffset 20}${goto 190} Size:     ${color snow3}${execi 30 du -sh /var/cache/pacman | cut -f 1}
+${offset -1}${color #66CD00}${font DejaVu Sans Mono :pixelsize=32}♻${goto 45}${font dejavu sans mono bold:pixelsize=16}${color #496C99}${voffset -3}Cache packages: $font ${color white}${voffset 0}${goto 190} Packages: ${color snow3}${alignr}${execi 30 ls /var/cache/pacman/pkg | wc -l} ${color white}${voffset 20}${goto 190} Size:     ${color snow3}${execi 30 du -sh /var/cache/pacman | cut -f 1}
 #
 ${hr 1}
 #
@@ -54,7 +55,7 @@ ${voffset 5}${offset -3}${font :pixelsize=32}${color #CD853F}☢${goto 45}${voff
 ${offset 10}${color snow2}$font Core 1: ${color snow3}${cpu cpu1}% ${goto 180}${color snow2} Core 2:${color snow3}${cpu cpu2}%${color white}
 ${offset 10}${color snow2}$font Core 3: ${color snow3}${cpu cpu3}% ${goto 180}${color snow2} Core 4:${color snow3}${cpu cpu4}%${color white}
 
-${offset 10}${color snow2}$font Freq: ${color snow3}${freq 1}Mhz ${alignr}${offset -10}${color snow2}Temp:${color snow3}${hwmon 2 temp 1}°C${color white}
+${offset 10}${color snow2}$font Freq: ${color snow3}${freq 1}Mhz ${alignr}${offset -10}${color snow2}Temp:${color snow3}${hwmon 0 temp 1}°C${color white}
 ${offset 10}${color snow2}$font Load: ${color snow3}$loadavg ${color snow2} ${alignr}${offset -10}Procs:${color snow3}$processes${color white}
 ${color white}
 ${offset 0}$font   - ${color light yellow}${top name 1} ${alignr} ${color light yellow}${top cpu 1}  ${color white}
@@ -95,7 +96,7 @@ ${offset 0}$font   - ${color #C3CC9E}${top_mem name 5} ${alignr} ${color #ADB293
 ${offset 0}${font :pixelsize=32}⇵${voffset -4}${goto 45}${font monospace:pixelsize=16}${color #496C99}NET:${color Light Blue}${gw_iface}${color #496C99} _____________${color white}
 
 ${offset 10}${voffset -10}${color snow2}$font Connections: ${voffset 0}▲ $font:${color snow3}${tcp_portmon 1 32767 count} ${goto 180}${voffset -0} ${color snow2}▼ $font:${color snow3}${tcp_portmon 32768 61000 count}
-${if_up wlan0} ${offset 10}${color Light Green}${voffset 12}${font :pixelsize=26}⬇${voffset -14}${font} ${downspeedgraph wlan0 20,160 6e8b3d e3fcb8 -t} ${color snow3} ${alignr}${voffset 14}${downspeed wlan0} ${color #C3CC9E} ${endif} ${if_up wlan1} ${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Green}${voffset 12}${voffset -12}$font ${downspeedgraph wlan1 20,200 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed wlan1} ${color #C3CC9E} ${endif} ${if_up eth0} ${offset 10}${color Light Green}${voffset 12}${font :pixelsize=26}⬇${voffset -14}${font} ${downspeedgraph wlan0 20,160 6e8b3d e3fcb8 -t} ${color snow3} ${alignr}${voffset 14}${downspeed eth0} ${color #C3CC9E} ${endif}
+${if_up wlan0} ${offset 10}${color Light Green}${voffset 12}${font :pixelsize=26}⬇${voffset -14}${font} ${downspeedgraph wlan0 20,160 6e8b3d e3fcb8 -t} ${color snow3} ${alignr}${voffset 14}${downspeed wlan0} ${color #C3CC9E} ${endif} ${if_up wlan1} ${offset 10}${color snow2}${font D050000L:pixelsize=24}${color Light Green}${voffset 12}${voffset -12}$font ${downspeedgraph wlan1 20,200 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed wlan1} ${color #C3CC9E} ${endif} ${if_up eth0} ${offset 10}${color Light Green}${voffset 12}${font :pixelsize=26}⬇${voffset -14}${font} ${downspeedgraph eth0 20,160 6e8b3d e3fcb8 -t} ${color snow3} ${alignr}${voffset 14}${downspeed eth0} ${color #C3CC9E} ${endif}
 
 #nice try but downloadspeed is buggy and doesnt work
 #${offset 10}${color snow2}${color Light Green}${voffset 12}{voffset -12}$font  ${downspeedgraph ${gw_iface} 20,110 496C99 DFFEFF -t} ${color snow3} ${voffset 14}${downspeed ${gw_iface}} ${color #C3CC9E}
